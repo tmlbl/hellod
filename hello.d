@@ -1,18 +1,19 @@
-import std.stdio, std.process;
+import std.stdio, std.process, std.string;
 
 void main()
 {
-	writeln(greet());
+	auto user = execute(["whoami"]);
+	writeln(greet(user.output));
 }
 
-string greet()
+string greet(string user)
 {
-	return "Hello, D.";
+	return format("Hello, %s.", chomp(user));
 }
 	
 unittest
 {
-	string greeting = greet();
-	assert(greeting == "Hello, D.");
+	string greeting = greet("me");
+	assert(greeting == "Hello, me.");
 }
 
